@@ -39,4 +39,11 @@ console.log(result);
         // return this.http.request(new Request(requestoptions))
         //     .map((response: Response) => response.json() as BlogModel[]);
     }
+
+    DeleteBlog(id:number): Observable<BlogModel> {
+        return this.http.delete(this.url)
+            .map((response: Response) => response.json() as BlogModel);
+    }
+
+
 }

@@ -3,9 +3,8 @@
 <div class="container">
     <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
     <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownToggle>Toggle dropdown</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual" *ngFor='let i of blogs'>
-      <button class="dropdown-item">i.Title</button>
-    
+    <div ngbDropdownMenu aria-labelledby="dropdownManual" >
+      <button class="dropdown-item" (click)="OnDropDownClick(i.Id)" *ngFor='let i of blogs'>{{i.Title}}</button>
     </div>
   
    
@@ -15,7 +14,7 @@
 
 </div>
 <div class="container">
-    <form (ngSubmit)="OnAddBlog(f)" #f="ngForm">
+    <form (ngSubmit)="OnBlogSubmit(f)" #f="ngForm">
         <div class="form-group">
           <label for="Title">Title</label>
           <input type="text"
@@ -38,7 +37,9 @@
                class="form-control" id="Author" aria-describedby="Author" placeholder="Enter Author">
             </div>
         
-        <button type="submit" class="btn btn-primary"(click)="OnBlockSubmit()">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+       <button type="submit" class="btn btn-primary"(click)="OnBlogDelete()">Delete</button>
+
       </form>
 
 

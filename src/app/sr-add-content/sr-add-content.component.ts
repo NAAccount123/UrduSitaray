@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreContentService } from './services/store-content.service';
 import { BlogModel } from './model/blog-model';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-
 @Component({
   selector: 'app-sr-add-content',
   templateUrl: './sr-add-content.component.html',
@@ -12,8 +11,15 @@ import { NgForm } from "@angular/forms";
 export class SrAddContentComponent implements OnInit {
 private blog_id:number;
 private blogs:Array<BlogModel>=[];
+private currentBlog:BlogModel;
+  constructor(private service:StoreContentService,private route: ActivatedRoute,private router: Router) { 
+     this.currentBlog=new BlogModel();
+  }
 
-  constructor(private service:StoreContentService,private route: ActivatedRoute) { }
+OnDropDownClick(Id:number)
+{
+  this.router.navigate(['/admin/',Id], { replaceUrl: true });
+}
 
   ngOnInit() {
         this.route.params.subscribe(
@@ -28,13 +34,17 @@ private blogs:Array<BlogModel>=[];
           for(let i in response)
           {
               this.blogs.push(response[i]);  
+              if(response[i].Id==this.blog_id)
+              {
+                this.currentBlog=response[i];
+              }
           }
         }
       );
   
 
   }
-  OnAddBlog(form:NgForm)
+  OnBlogSubmit(form:NgForm)
   {
   let BlogModelObj:BlogModel=new BlogModel();
   const value=form.value;
@@ -42,6 +52,13 @@ private blogs:Array<BlogModel>=[];
   BlogModelObj.Description=value.Description;
   BlogModelObj.Author=value.Author;
   this.service.SaveBlog(BlogModelObj);
-  }
+}
+
+OnBlogDelete(Id)
+{
+  this.service.DeleteBlog(Id);
+}
+
+
 
 }
