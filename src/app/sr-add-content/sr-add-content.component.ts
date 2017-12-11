@@ -14,35 +14,43 @@ private blogs:Array<BlogModel>=[];
 private currentBlog:BlogModel;
   constructor(private service:StoreContentService,private route: ActivatedRoute,private router: Router) { 
      this.currentBlog=new BlogModel();
-  }
-
-OnDropDownClick(Id:number)
-{
-  this.router.navigate(['/admin/',Id], { replaceUrl: true });
-}
-
-  ngOnInit() {
-        this.route.params.subscribe(
+             this.route.params.subscribe(
       params=>{
         this.blog_id=params['id'];
       });
 
       this.service.GetBlogs().subscribe(
         response=>{
-      
-      
-          for(let i in response)
+        for(let i in response)
           {
               this.blogs.push(response[i]);  
               if(response[i].Id==this.blog_id)
               {
                 this.currentBlog=response[i];
               }
-          }
+          }  
         }
       );
   
 
+
+  }
+
+OnDropDownClick(Id:number)
+{
+  this.blog_id=Id;
+        for(let i in this.blogs)
+          {
+              if(this.blogs[i].Id==Id)
+              {
+                this.currentBlog=this.blogs[i];
+                console.log(this.currentBlog.Title);
+              }
+          }  
+  this.router.navigate(['/admin/',Id], { replaceUrl: true });
+}
+
+  ngOnInit() {
   }
   OnBlogSubmit(form:NgForm)
   {
