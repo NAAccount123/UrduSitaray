@@ -1,4 +1,19 @@
 <app-sr-nav></app-sr-nav>
+<h3>Add New Blog</h3>
+<div class="container">
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownToggle>Toggle dropdown</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual" *ngFor='let i of blogs'>
+      <button class="dropdown-item">i.Title</button>
+    
+    </div>
+  
+   
+  </div>
+
+
+
+</div>
 <div class="container">
     <form (ngSubmit)="OnAddBlog(f)" #f="ngForm">
         <div class="form-group">

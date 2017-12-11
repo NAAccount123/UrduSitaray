@@ -21,12 +21,17 @@ private blogs:Array<BlogModel>=[];
         this.blog_id=params['id'];
       });
 
-this.service.GetBlogs().subscribe(
-  response=>{
-this.blogs=response;
-  }
-);
-
+      this.service.GetBlogs().subscribe(
+        response=>{
+      
+      
+          for(let i in response)
+          {
+              this.blogs.push(response[i]);  
+          }
+        }
+      );
+  
 
   }
   OnAddBlog(form:NgForm)
