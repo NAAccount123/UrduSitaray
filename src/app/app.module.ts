@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { HttpModule } from '@angular/http';
 import { StoreContentService } from "./sr-add-content/services/store-content.service";
+import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { StoreContentService } from "./sr-add-content/services/store-content.ser
     SrNavComponent,
     SrContentComponent,
     SrAddContentComponent,
-    MainBodyComponent
+    MainBodyComponent,
+    AddArtcleComponent,
   ],
   imports: [
     NgbModule.forRoot(),
