@@ -18,7 +18,7 @@ export class SrAddContentComponent implements OnInit {
   x.Title="Dussa"
 
 
-  this.service.SaveBlog(x);
+    this.service.SaveBlog(x);
   }
   ngOnInit() {
   }

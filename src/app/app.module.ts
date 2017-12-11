@@ -9,6 +9,7 @@ import { SrAddContentComponent } from './sr-add-content/sr-add-content.component
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { HttpModule } from '@angular/http';
+import { StoreContentService } from "./sr-add-content/services/store-content.service";
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [],
+  providers: [StoreContentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
