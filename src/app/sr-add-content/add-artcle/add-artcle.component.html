@@ -10,11 +10,11 @@
             <input type="text" class="form-control" id="Description" aria-describedby="description" placeholder="Enter Description">
           </div>
           <div class="form-group">
-              <label for="Alt">Author</label>
+              <label for="Alt">Alt</label>
               <input type="text" class="form-control" id="Alt" aria-describedby="alt" placeholder="Enter Alt">
             </div>
           <div class="form-group">
-              <label for="Alt">Author</label>
+              <label for="Alt">Upload Picture</label>
               <input type="file" class="form-control" id="Alt" aria-describedby="alt" placeholder="Enter Alt">
             </div>
         
@@ -26,6 +26,7 @@
         </div>
 
        <button type="submit" class="btn btn-primary"(click)="OnArticleSubmit()">Save</button>
+       <button type="submit" class="btn btn-primary" [routerLink]="['../../admin']" >Cancel</button>
       </form>
 
 

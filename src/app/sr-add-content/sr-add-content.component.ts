@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreContentService } from './services/store-content.service';
 import { BlogModel } from './model/blog-model';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-sr-add-content',
@@ -8,8 +9,10 @@ import { BlogModel } from './model/blog-model';
   styleUrls: ['./sr-add-content.component.css']
 })
 export class SrAddContentComponent implements OnInit {
+private blog_id:number;
 
-  constructor(private service:StoreContentService) { }
+
+  constructor(private service:StoreContentService,private route: ActivatedRoute) { }
   public OnBlockSubmit(){
 
   let x:BlogModel=new BlogModel();
@@ -21,6 +24,10 @@ export class SrAddContentComponent implements OnInit {
     this.service.SaveBlog(x);
   }
   ngOnInit() {
+        this.route.params.subscribe(
+      params=>{
+        alert(params['id'])
+      }
   }
 
 }

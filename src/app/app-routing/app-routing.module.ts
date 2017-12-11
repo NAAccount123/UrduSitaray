@@ -6,19 +6,24 @@ import { MainBodyComponent } from '../main-body/main-body.component';
 import { AddArtcleComponent } from "../sr-add-content/add-artcle/add-artcle.component";
 
 const routes: Routes = [
-    {
-        path: '',
-        component: MainBodyComponent,
-    },
+   
+   
+  {
+      path:'admin/:id/article',
+      component:AddArtcleComponent
+  }, {
+      path: 'admin/:id',
+      component: SrAddContentComponent,
+  },
     {
       path: 'admin',
       component: SrAddContentComponent,
   },
-  {
-      path:'admin/article/:id',
-      component:AddArtcleComponent
-  }
-];
+    {
+        path: '',
+        component: MainBodyComponent,
+    }
+   ];
 
 @NgModule({
     imports: [
