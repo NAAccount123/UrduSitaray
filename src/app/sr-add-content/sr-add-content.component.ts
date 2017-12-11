@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreContentService } from './services/store-content.service';
 import { BlogModel } from './model/blog-model';
 import { ActivatedRoute } from "@angular/router";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-sr-add-content',
@@ -10,24 +11,32 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class SrAddContentComponent implements OnInit {
 private blog_id:number;
-
+private blogs:Array<BlogModel>=[];
 
   constructor(private service:StoreContentService,private route: ActivatedRoute) { }
-  public OnBlockSubmit(){
 
-  let x:BlogModel=new BlogModel();
-  x.Author="Abbas";
-  x.Description="Noman",
-  x.Title="Dussa"
-
-
-    this.service.SaveBlog(x);
-  }
   ngOnInit() {
         this.route.params.subscribe(
       params=>{
-        alert(params['id'])
-      }
+        this.blog_id=params['id'];
+      });
+
+this.service.GetBlogs().subscribe(
+  response=>{
+this.blogs=response;
+  }
+);
+
+
+  }
+  OnAddBlog(form:NgForm)
+  {
+  let BlogModelObj:BlogModel=new BlogModel();
+  const value=form.value;
+  BlogModelObj.Title=value.Title;
+  BlogModelObj.Description=value.Description;
+  BlogModelObj.Author=value.Author;
+  this.service.SaveBlog(BlogModelObj);
   }
 
 }

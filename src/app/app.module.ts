@@ -11,6 +11,7 @@ import { MainBodyComponent } from './main-body/main-body.component';
 import { HttpModule } from '@angular/http';
 import { StoreContentService } from "./sr-add-content/services/store-content.service";
 import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.component';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.compo
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule      
   ],
   providers: [StoreContentService],
   bootstrap: [AppComponent]

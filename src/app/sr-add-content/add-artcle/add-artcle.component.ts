@@ -16,7 +16,7 @@ private blog_id:number;
   ngOnInit() {
     this.route.params.subscribe(
       params=>{
-        alert(params['id'])
+        this.blog_id=params['id'];
       }
 
     );

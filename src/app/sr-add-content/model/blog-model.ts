@@ -1,7 +1,6 @@
 export class BlogModel{
-
-Title:string=null
-Description:string=null
-Author:string=null
-
+Id:number;
+Title:string=null;
+Description:string=null;
+Author:string=null;
 }
