@@ -14,7 +14,6 @@ import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.compo
 import { FormsModule } from "@angular/forms";
 
 import { NgModelComponent } from './Common/ng-model/ng-model.component';
-
 import { ArticleService } from './sr-add-content/add-artcle/article.service';
 
 
