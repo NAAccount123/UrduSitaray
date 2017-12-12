@@ -54,7 +54,15 @@ Alert_M(header:string,message:string)
       );
   
 
-
+this.Aservice.GetArticles(this.blog_id).subscribe(
+  response=>{
+  for(let i in response)
+    {
+        this.articles.push(response[i]);  
+      
+    }  
+  }
+);
   }
 
 OnDropDownClick(Id:number)
