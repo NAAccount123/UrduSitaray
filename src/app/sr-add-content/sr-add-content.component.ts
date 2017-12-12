@@ -5,8 +5,13 @@ import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { NgModelComponent } from "../Common/ng-model/ng-model.component";
+<<<<<<< HEAD
 import { Observable } from "rxjs/Observable";
 import { Subscriber } from "rxjs/Subscriber";
+=======
+import { ArticleModel } from './model/article-model';
+import { ArticleService } from './add-artcle/article.service';
+>>>>>>> e5dba165e16da6695afc54da13f63584efea1a46
 @Component({
   selector: 'app-sr-add-content',
   templateUrl: './sr-add-content.component.html',
@@ -16,7 +21,7 @@ export class SrAddContentComponent implements OnInit {
 private blog_id:number;
 private blogs:Array<BlogModel>=[];
 private currentBlog:BlogModel;
-
+private articles:Array<ArticleModel>=[];
 private ModelMessage:string;
 private ModelHeader:string;
 
@@ -29,7 +34,8 @@ Alert_M(header:string,message:string)
 
 
   constructor(
-  private service:StoreContentService,
+    private Aservice:ArticleService,
+  private Bservice:StoreContentService,
   private route: ActivatedRoute,
   private router: Router,
   private modalService: NgbModal) { 
@@ -39,7 +45,7 @@ Alert_M(header:string,message:string)
         this.blog_id=params['id'];
       });
 
-      this.service.GetBlogs().subscribe(
+      this.Bservice.GetBlogs().subscribe(
         response=>{
         for(let i in response)
           {
@@ -81,12 +87,12 @@ OnDropDownClick(Id:number)
   BlogModelObj.Title=value.Title;
   BlogModelObj.Description=value.Description;
   BlogModelObj.Author=value.Author;
-  this.service.SaveBlog(BlogModelObj);
+  this.Bservice.SaveBlog(BlogModelObj);
 }
 
 OnBlogDelete(Id)
 {
-  this.service.DeleteBlog(Id);
+  this.Bservice.DeleteBlog(Id);
 }
 alerto(){
    const modalRef = this.modalService.open(NgModelComponent);

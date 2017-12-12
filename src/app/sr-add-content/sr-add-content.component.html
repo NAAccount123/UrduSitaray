@@ -46,5 +46,38 @@
 
 </div>
 
-
+<div class = "container">
+        
+        <table class="table table-bordered table-striped ">
+          <thead>
+        <tr>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Alt</td>
+        <td>Picture</td>
+        <td>Delete</td>
+        
+        
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of articles">
+              <td>{{i.Title}}</td>
+              <td>{{i.Description}}</td>
+              <td>{{i.Alt}}</td>
+              <td>{{i.PictureName}}</td>
+              <td>Delete</td>
+        
+          </tr>
+          
+        </tbody>
+        
+        
+        
+        </table>
+        
+        
+        
+        
+        </div>
 
