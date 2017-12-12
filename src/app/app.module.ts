@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { StoreContentService } from "./sr-add-content/services/store-content.service";
 import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.component';
 import { FormsModule } from "@angular/forms";
+import { ArticleService } from './sr-add-content/add-artcle/article.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { FormsModule } from "@angular/forms";
     HttpModule,
     FormsModule      
   ],
-  providers: [StoreContentService],
+  providers: [StoreContentService,ArticleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
