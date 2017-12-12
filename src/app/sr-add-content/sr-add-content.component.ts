@@ -3,6 +3,8 @@ import { StoreContentService } from './services/store-content.service';
 import { BlogModel } from './model/blog-model';
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgModelComponent } from "../Common/ng-model/ng-model.component";
 @Component({
   selector: 'app-sr-add-content',
   templateUrl: './sr-add-content.component.html',
@@ -24,7 +26,11 @@ Alert_M(header:string,message:string)
 
 
 
-  constructor(private service:StoreContentService,private route: ActivatedRoute,private router: Router) { 
+  constructor(
+  private service:StoreContentService,
+  private route: ActivatedRoute,
+  private router: Router,
+  private modalService: NgbModal) { 
      this.currentBlog=new BlogModel();
              this.route.params.subscribe(
       params=>{
@@ -78,7 +84,10 @@ OnBlogDelete(Id)
 {
   this.service.DeleteBlog(Id);
 }
-
+alerto(){
+   const modalRef = this.modalService.open(NgModelComponent);
+    modalRef.componentInstance.name = 'World';
+}
 
 
 }
