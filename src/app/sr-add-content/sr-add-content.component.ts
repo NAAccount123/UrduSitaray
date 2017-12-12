@@ -56,22 +56,29 @@ Alert_M(header:string,message:string)
       );
   
 
-this.Aservice.GetArticles(this.blog_id).subscribe(
-  response=>{
-  for(let i in response)
-    {
-        this.articles.push(response[i]);        
-    }  
-  }
-);
-
-
+this.GetArticles();
 
   }
+GetArticles()
+{
+  this.articles=[];
+  this.Aservice.GetArticles(this.blog_id).subscribe(
+    response=>{
+    for(let i in response)
+      {
+          this.articles.push(response[i]);        
+      }  
+    }
+  );
 
+
+
+}
 OnDropDownClick(Id:number)
 {
+
   this.blog_id=Id;
+  this.GetArticles();
         for(let i in this.blogs)
           {
               if(this.blogs[i].Id==Id)

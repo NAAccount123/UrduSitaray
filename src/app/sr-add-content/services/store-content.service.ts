@@ -50,12 +50,15 @@ this.blogsTemp.push(b4);
   SaveBlog(blog:BlogModel)
   {
 
-  this.http.post(this.url,blog).subscribe(
+//   this.http.post(this.url,blog).subscribe(
 
-result=>{
-console.log(result);
+// result=>{
+// console.log(result);
 
-});
+// });
+
+this.blogsTemp.push(blog);
+
   }
 
 
@@ -80,6 +83,15 @@ return Observable.create((observer: Subscriber<any>) => {
     }
 
     DeleteBlog(id:number): Observable<BlogModel> {
+        let index:number = 0; 
+        for(let i of this.blogsTemp){
+        index+=1;
+        if(i.Id==id){
+            break;
+        }
+
+        }
+        this.blogsTemp.slice(index);
         return this.http.delete(this.url)
             .map((response: Response) => response.json() as BlogModel);
     }

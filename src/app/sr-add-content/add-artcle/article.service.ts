@@ -26,7 +26,7 @@ a1.PictureName="p1";
 
 let a2:ArticleModel=new ArticleModel();
 a2.Id=2;
-a2.Blog_id=1;
+a2.Blog_id=2;
 a2.Alt="alt2";
 a2.Title="a2";
 a2.Description="ad2";
@@ -34,7 +34,7 @@ a2.PictureName="p2";
 
 let a3:ArticleModel=new ArticleModel();
 a3.Id=3;
-a3.Blog_id=1;
+a3.Blog_id=3;
 a3.Title="a3";
 a3.Alt="alt3";
 a3.Description="ad3";
@@ -42,7 +42,7 @@ a3.PictureName="p3";
 
 let a4:ArticleModel=new ArticleModel();
 a4.Id=4;
-a4.Blog_id=1;
+a4.Blog_id=4;
 a4.Alt="alt4";
 a4.Title="a4";
 a4.Description="ad4";
@@ -74,7 +74,14 @@ console.log(result);
 
 
     GetArticles(blog_id:number): Observable<Array<ArticleModel>> {
-
+        let Temp:Array<ArticleModel>=[];
+        for(let i of this.articlesTemp){
+        if(i.Blog_id==blog_id)
+        {
+          Temp.push(i);    
+        }
+        }
+    
         let requestoptions = new RequestOptions({
             method: RequestMethod.Get,
             url: this.url
@@ -84,7 +91,7 @@ console.log(result);
         //     .map((response: Response) => response.json() as Array<ArticleModel>);
 
 return Observable.create((observer: Subscriber<any>) => {
-    observer.next(this.articlesTemp);
+    observer.next(Temp);
     observer.complete();
 });
 
