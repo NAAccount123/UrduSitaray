@@ -5,6 +5,8 @@ import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { NgModelComponent } from "../Common/ng-model/ng-model.component";
+import { Observable } from "rxjs/Observable";
+import { Subscriber } from "rxjs/Subscriber";
 import { ArticleModel } from './model/article-model';
 import { ArticleService } from './add-artcle/article.service';
 @Component({
@@ -58,11 +60,13 @@ this.Aservice.GetArticles(this.blog_id).subscribe(
   response=>{
   for(let i in response)
     {
-        this.articles.push(response[i]);  
-      
+        this.articles.push(response[i]);        
     }  
   }
 );
+
+
+
   }
 
 OnDropDownClick(Id:number)
