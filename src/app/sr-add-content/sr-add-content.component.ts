@@ -12,6 +12,18 @@ export class SrAddContentComponent implements OnInit {
 private blog_id:number;
 private blogs:Array<BlogModel>=[];
 private currentBlog:BlogModel;
+
+private ModelMessage:string;
+private ModelHeader:string;
+
+Alert_M(header:string,message:string)
+{
+ this.ModelHeader=header;
+ this.ModelMessage=message;
+}
+
+
+
   constructor(private service:StoreContentService,private route: ActivatedRoute,private router: Router) { 
      this.currentBlog=new BlogModel();
              this.route.params.subscribe(

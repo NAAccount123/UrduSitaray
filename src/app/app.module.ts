@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { StoreContentService } from "./sr-add-content/services/store-content.service";
 import { AddArtcleComponent } from './sr-add-content/add-artcle/add-artcle.component';
 import { FormsModule } from "@angular/forms";
+import { NgModelComponent } from './Common/ng-model/ng-model.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FormsModule } from "@angular/forms";
     SrAddContentComponent,
     MainBodyComponent,
     AddArtcleComponent,
+    NgModelComponent,
   ],
   imports: [
     NgbModule.forRoot(),
