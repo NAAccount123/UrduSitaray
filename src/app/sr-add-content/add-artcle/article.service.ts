@@ -18,6 +18,7 @@ url:string = 'https://sitarayproject.firebaseio.com/sitarayproject.json';
 let a1:ArticleModel=new ArticleModel();
 a1.Id=1;
 a1.Blog_id=1;
+a1.Alt="alt1";
 a1.Title="a1";
 a1.Description="ad1";
 a1.PictureName="p1";
@@ -26,6 +27,7 @@ a1.PictureName="p1";
 let a2:ArticleModel=new ArticleModel();
 a2.Id=2;
 a2.Blog_id=1;
+a2.Alt="alt2";
 a2.Title="a2";
 a2.Description="ad2";
 a2.PictureName="p2";
@@ -34,12 +36,14 @@ let a3:ArticleModel=new ArticleModel();
 a3.Id=3;
 a3.Blog_id=1;
 a3.Title="a3";
+a3.Alt="alt3";
 a3.Description="ad3";
 a3.PictureName="p3";
 
 let a4:ArticleModel=new ArticleModel();
 a4.Id=4;
 a4.Blog_id=1;
+a4.Alt="alt4";
 a4.Title="a4";
 a4.Description="ad4";
 a4.PictureName="p4";
@@ -52,7 +56,7 @@ this.articlesTemp.push(a4);
 
   }
 
-articlesTemp:Array<ArticleModel>;
+articlesTemp:Array<ArticleModel>=[];
 
 
 
@@ -69,7 +73,7 @@ console.log(result);
 
 
 
-    GetArticles(): Observable<Array<ArticleModel>> {
+    GetArticles(blog_id:number): Observable<Array<ArticleModel>> {
 
         let requestoptions = new RequestOptions({
             method: RequestMethod.Get,
