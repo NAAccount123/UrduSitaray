@@ -1,22 +1,35 @@
 <app-sr-nav></app-sr-nav>
 <div class="container">
-    <form>
+    <form (ngSubmit)="OnArticleSubmit(f)" #f="ngForm">
         <div class="form-group">
-          <label for="Title">Title</label>
-          <input type="text" class="form-control" id="Title" aria-describedby="title" placeholder="Enter Title">
+          <label for="Picture">Picture</label>
+          <input type="file" class="form-control" id="Picture" name="Picture" aria-describedby="Picture">
+          
+
+        </div>
+        <div class="form-group">
+            
+         <label for="Title">Title</label>
+         <input type="text" class="form-control" id="Title" name="Title" aria-describedby="title" placeholder="Enter Title"
+         ngModel >
+               
         </div>
         <div class="form-group">
             <label for="Description">Description</label>
-            <input type="text" class="form-control" id="Description" aria-describedby="description" placeholder="Enter Description">
+            <input type="text" class="form-control" id="Description" name="Description" aria-describedby="description" placeholder="Enter Description"
+            ngModel >
+            
+
           </div>
           <div class="form-group">
               <label for="Alt">Alt</label>
-              <input type="text" class="form-control" id="Alt" aria-describedby="alt" placeholder="Enter Alt">
+              <input type="text" class="form-control" 
+              id="Alt" name="Alt" aria-describedby="alt" 
+              placeholder="Enter Alt"
+              ngModel >
+              
             </div>
-          <div class="form-group">
-              <label for="Alt">Upload Picture</label>
-              <input type="file" class="form-control" id="Alt" aria-describedby="alt" placeholder="Enter Alt">
-            </div>
+          
         
         <div class="form-check">
           <label class="form-check-label">
@@ -25,13 +38,18 @@
           </label>
         </div>
 
-       <button type="submit" class="btn btn-primary"(click)="OnArticleSubmit()">Save</button>
+       <button type="submit" class="btn btn-primary">Save</button>
        <button type="submit" class="btn btn-primary" [routerLink]="['../../admin']" >Cancel</button>
       </form>
 
 
 
 
+</div>
+<div class="container">
+
+
+  
 </div>
 
 
