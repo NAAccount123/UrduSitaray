@@ -5,6 +5,8 @@ import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { NgModelComponent } from "../Common/ng-model/ng-model.component";
+import { Observable } from "rxjs/Observable";
+import { Subscriber } from "rxjs/Subscriber";
 @Component({
   selector: 'app-sr-add-content',
   templateUrl: './sr-add-content.component.html',
@@ -50,6 +52,8 @@ Alert_M(header:string,message:string)
         }
       );
   
+
+
 
 
   }
