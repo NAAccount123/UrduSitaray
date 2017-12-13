@@ -11,90 +11,111 @@ import { Subscriber } from "rxjs/Subscriber";
 
 @Injectable()
 export class StoreContentService {
-url:string = 'https://sitarayproject.firebaseio.com/sitarayproject.json';
+    url: string = 'https://sitarayproject.firebaseio.com/sitarayproject.json';
+    url2: string = 'http://localhost:43657/api/Blogs';
+    blogsTemp: Array<BlogModel> = [];
 
-blogsTemp:Array<BlogModel>=[];
+    constructor(private http: Http) {
 
-  constructor(private http: Http) {
+        let b1: BlogModel = new BlogModel();
+        b1.Id = 1;
+        b1.Author = "BA1";
+        b1.Description = "BD1";
+        b1.Title = "BT1";
 
-let b1:BlogModel =new BlogModel();
-b1.Id=1;
-b1.Author="BA1";
-b1.Description="BD1";
-b1.Title="BT1";
+        let b2: BlogModel = new BlogModel();
+        b2.Id = 2;
+        b2.Author = "BA2";
+        b2.Description = "BD2";
+        b2.Title = "BT2";
 
-let b2:BlogModel =new BlogModel();
-b2.Id=2;
-b2.Author="BA2";
-b2.Description="BD2";
-b2.Title="BT2";
+        let b3: BlogModel = new BlogModel();
+        b1.Id = 3;
+        b1.Author = "BA3";
+        b1.Description = "BD3";
+        b1.Title = "BT3";
 
-let b3:BlogModel =new BlogModel();
-b1.Id=3;
-b1.Author="BA3";
-b1.Description="BD3";
-b1.Title="BT3";
+        let b4: BlogModel = new BlogModel();
+        b4.Id = 4;
+        b4.Author = "BA4";
+        b4.Description = "BD4";
+        b4.Title = "BT4";
 
-let b4:BlogModel =new BlogModel();
-b4.Id=4;
-b4.Author="BA4";
-b4.Description="BD4";
-b4.Title="BT4";
+        this.blogsTemp.push(b1);
+        this.blogsTemp.push(b2);
+        this.blogsTemp.push(b3);
+        this.blogsTemp.push(b4);
 
-this.blogsTemp.push(b1);
-this.blogsTemp.push(b2);
-this.blogsTemp.push(b3);
-this.blogsTemp.push(b4);
+    }
+    SaveBlog(blog: BlogModel): Observable<BlogModel> {
 
-   }
-  SaveBlog(blog:BlogModel)
-  {
-
-//   this.http.post(this.url,blog).subscribe(
-
-// result=>{
-// console.log(result);
-
-// });
-
-this.blogsTemp.push(blog);
-
-  }
-
+        return this.http.post(this.url2, blog)
+            .map((response: Response) => response.json() as BlogModel);
+    }
 
 
     GetBlogs(): Observable<Array<BlogModel>> {
 
         let requestoptions = new RequestOptions({
             method: RequestMethod.Get,
-            url: this.url
         });
-
-return Observable.create((observer: Subscriber<any>) => {
-    observer.next(this.blogsTemp);
-    observer.complete();
-});
-        // return this.http.get(this.url)
-        //     .map((response: Response) => response.json() as Array<BlogModel>);
-
-
-        // return this.http.request(new Request(requestoptions))
-        //     .map((response: Response) => response.json() as BlogModel[]);
+        return this.http.get(this.url2)
+            .map((response: Response) => response.json() as Array<BlogModel>);
     }
 
-    DeleteBlog(id:number): Observable<BlogModel> {
-        let index:number = 0; 
-        for(let i of this.blogsTemp){
-        index+=1;
-        if(i.Id==id){
-            break;
-        }
-
-        }
-        this.blogsTemp.slice(index);
-        return this.http.delete(this.url)
-            .map((response: Response) => response.json() as BlogModel);
+    DeleteBlog(id: number):boolean {
+        let url=this.url2+"?id="+id;
+        this.http.delete(url).subscribe(
+            result => {
+                alert("Successfully deleted Blog");
+                return true;
+            }, error => {
+                alert("Can not delete blog, See error in console");
+                console.log(error);
+                return false;
+            }
+        );
+      return false;
     }
+
+
+
+    // SaveBlog(blog:BlogModel):Observable<BlogModel>
+    //   {
+    //     this.blogsTemp=13;
+    //     this.blogsTemp.push(blog);
+    //     return Observable.create((observer: Subscriber<any>) => {
+    //     observer.next(blog);
+    //     observer.complete();
+    //   });
+    //   }
+
+
+
+    //     GetBlogs(): Observable<Array<BlogModel>> {
+
+
+    // return Observable.create((observer: Subscriber<any>) => {
+    //     observer.next(this.blogsTemp);
+    //     observer.complete();
+    // });
+    //     }
+
+
+
+
+    // DeleteBlog(id:number){
+    //     let index:number = 0; 
+    //     for(let i of this.blogsTemp){
+    //     index+=1;
+    //     if(i.Id==id){
+    //         break;
+    //     }
+
+    //     }
+    //     this.blogsTemp.slice(index);
+    //     alert("Successfully sliced blog");
+    // }
 
 
 }

@@ -1,84 +1,74 @@
 <app-sr-nav></app-sr-nav>
-<h3>Add New Blog</h3>
+<h4 class="text-center">Add New Blog</h4>
 <div class="container">
-    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-    <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownToggle>Toggle dropdown</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual" >
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownToggle>Select Blog</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
       <button class="dropdown-item" (click)="OnDropDownClick(i.Id)" *ngFor='let i of blogs'>{{i.Title}}</button>
     </div>
-  
-   
+
+
   </div>
 
 
-
 </div>
+
 <div class="container">
-    <form (ngSubmit)="OnBlogSubmit(f)" #f="ngForm">
-        <div class="form-group">
-          <label for="Title">Title</label>
-          <input type="text"
-          name="Title"
-           [(ngModel)]="currentBlog.Title"
-           class="form-control" id="Title" aria-describedby="Title" placeholder="Enter Title">
-        </div>
-        <div class="form-group">
-            <label for="Description">Description</label>
-            <input type="text"
-            name="Description"
-           [(ngModel)]="currentBlog.Description"
-             class="form-control" id="Description" aria-describedby="Description" placeholder="Enter Description">
-          </div>
-          <div class="form-group">
-              <label for="Author">Author</label>
-              <input type="text"
-              name="Author"
-           [(ngModel)]="currentBlog.Author"
-               class="form-control" id="Author" aria-describedby="Author" placeholder="Enter Author">
-            </div>
-        
-        <button type="submit" class="btn btn-primary">Save</button>
-       <button type="submit" class="btn btn-primary"(click)="OnBlogDelete()">Delete</button>
-      </form>
+  <form (ngSubmit)="OnBlogSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="Title">Title</label>
+      <input type="text" name="Title" (input)="null" [ngClass]="{'form-control':true}" [disabled]="!IsNewBlog" [(ngModel)]="currentBlog.Title"
+        class="form-control" id="Title" aria-describedby="Title" placeholder="Enter Title">
+    </div>
+    <div class="form-group">
+      <label for="Description">Description</label>
+      <input type="text" name="Description" (input)="null" [disabled]="!IsNewBlog" [ngClass]="{'form-control':true}" [(ngModel)]="currentBlog.Description"
+        class="form-control" id="Description" aria-describedby="Description" placeholder="Enter Description">
+    </div>
+    <div class="form-group">
+      <label for="Author">Author</label>
+      <input type="text" name="Author" (input)="null" [disabled]="!IsNewBlog" [ngClass]="{'form-control':true}" [(ngModel)]="currentBlog.Author"
+        class="form-control" id="Author" aria-describedby="Author" placeholder="Enter Author">
+    </div>
 
-<app-ng-model  [Message]="ModelMessage" [Header]="ModelHeader"></app-ng-model>
-<button class="btn btn-lg btn-outline-primary" (click)="alerto()">Launch demo modal</button>
+    <button *ngIf="IsNewBlog" type="submit" [ngClass]="{'btn btn-primary':true}">Save</button>
+    <button *ngIf="!IsNewBlog" type="button" [ngClass]="{'btn btn-primary':true}" (click)="OnBlogDelete(currentBlog.Id)">Delete</button>
+    <button *ngIf="!IsNewBlog" type="button" [ngClass]="{'btn btn-primary':true}" [routerLink]="['../']">Reset</button>
+
+  </form>
+
 
 </div>
+<br>
+<div class="container">
 
-<div class = "container">
-        
-        <table class="table table-bordered table-striped ">
-          <thead>
-        <tr>
+  <table class="table table-bordered table-striped ">
+    <thead>
+      <tr>
         <td>Title</td>
         <td>Description</td>
         <td>Alt</td>
         <td>Picture</td>
         <td>Delete</td>
-        
-        
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let i of articles">
-              <td>{{i.Title}}</td>
-              <td>{{i.Description}}</td>
-              <td>{{i.Alt}}</td>
-              <td>{{i.PictureName}}</td>
-              <td>Delete</td>
-        
-          </tr>
-          
-        </tbody>
-        
-        
-        
-        </table>
-        
-        
-        
-        
-        </div>
 
-<button class="btn btn-primary" [routerLink]="['article']">Add Article </button>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of articles">
+        <td>{{i.Title}}</td>
+        <td>{{i.Description}}</td>
+        <td>{{i.Alt}}</td>
+        <td>{{i.PictureName}}</td>
+        <td>Delete</td>
+
+      </tr>
+    </tbody>
+  </table>
+<button *ngIf="!IsNewBlog" class="btn btn-primary float-lg-right" [routerLink]="['article']">Add Article </button>
+
+</div>
+
+
+<app-ng-model [Message]="ModelMessage" [Header]="ModelHeader"></app-ng-model>
+<button class="btn btn-lg btn-outline-primary" (click)="alerto()">Launch demo modal</button>
