@@ -1,4 +1,9 @@
 export class ArticleModel{
+    constructor()
+    {
+       this.FullPictureName="..\\assets\\"+this.BlogId+"\\"+this.PictureName;
+    }
+    FullPictureName:string;
     PictureName:string;
     Id:number;
     BlogId:number;

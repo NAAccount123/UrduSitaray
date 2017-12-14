@@ -66,9 +66,26 @@ export class ArticleService {
 
 
 
-  SaveArticle(article: ArticleModel): Observable<ArticleModel> {
+  SaveArticle(article: ArticleModel,picture:File): Observable<ArticleModel> {
 
-    return this.http.post(this.url2, article)
+        let headers = new Headers();
+        // headers.append('Content-Type', 'multipart/form-data');
+        // headers.append('Accept', 'application/json');
+
+    let requestoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      headers:headers
+        });
+
+
+
+    let formData: FormData = new FormData();
+    if (picture != null || picture != undefined) {
+      formData.append('files', picture, picture.name);
+    }
+   formData.append("article",JSON.stringify(article));
+
+    return this.http.post(this.url2,formData,requestoptions)
       .map((response: Response) => response.json() as ArticleModel);
   }
 
@@ -97,23 +114,17 @@ export class ArticleService {
       alert("Id of current Article is null so can't delete it");
       return;
     }
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', id.toString());
+    // let params: URLSearchParams = new URLSearchParams();
+    // params.set('id', id.toString());
 
     let requestoptions = new RequestOptions({
-      method: RequestMethod.Delete,
-      search: params
+      method: RequestMethod.Delete
+      // search: params
     });
+      let url=this.url2+"?id="+id;
 
-
-    this.http.delete(this.url2).subscribe(
-      result => {
-        alert("Successfully Deleted Article")
-      }, error => {
-        alert("Error while getting deleting Article, Check log to see error");
-        console.log(error);
-      }
-    );
+   return this.http.delete(url);
+   
   }
 
 

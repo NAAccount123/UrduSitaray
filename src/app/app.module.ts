@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 
 import { NgModelComponent } from './Common/ng-model/ng-model.component';
 import { ArticleService } from './sr-add-content/add-artcle/article.service';
+import { SrArticleComponent } from './sr-content/sr-article/sr-article.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ArticleService } from './sr-add-content/add-artcle/article.service';
     MainBodyComponent,
     AddArtcleComponent,
     NgModelComponent,
+    SrArticleComponent,
   ],
   imports: [
     NgbModule.forRoot(),

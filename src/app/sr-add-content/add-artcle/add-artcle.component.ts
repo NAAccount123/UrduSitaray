@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from './article.service';
 import { NgForm } from '@angular/forms';
@@ -13,12 +13,11 @@ import { ArticleModel } from '../model/article-model';
 
 export class AddArtcleComponent implements OnInit {
   private blog_id: number;
-
+  private Picture:File;
   ngOnInit() {
   }
 
   constructor(private service: ArticleService, private route: ActivatedRoute, private router: Router) {
-
     this.route.params.subscribe(
       params => {
         this.blog_id = params['id'];
@@ -31,7 +30,8 @@ export class AddArtcleComponent implements OnInit {
     ArticleModelObj.Title = value.Title;
     ArticleModelObj.Description = value.Description;
     ArticleModelObj.Alt = value.Alt;
-    this.service.SaveArticle(ArticleModelObj).subscribe(
+
+    this.service.SaveArticle(ArticleModelObj,this.Picture).subscribe(
       result => {
         alert("Successfully Saved Article");
             this.router.navigate(['../admin/',this.blog_id]);
@@ -41,4 +41,30 @@ export class AddArtcleComponent implements OnInit {
       }
     );
   }
+onChange(event) {
+    this.Picture = event.srcElement.files[0];
+  }
+// fileChange(event) {
+//     let fileList: FileList = event.target.files;
+//     if(fileList.length > 0) {
+//         let file: File = fileList[0];
+//         let formData:FormData = new FormData();
+//         formData.append('uploadFile', file, file.name);
+//         let headers = new Headers();
+//         /** No need to include Content-Type in Angular 4 */
+//         headers.append('Content-Type', 'multipart/form-data');
+//         headers.append('Accept', 'application/json');
+//         let options = new RequestOptions({ headers: headers });
+//         this.http.post(`${this.apiEndPoint}`, formData, options)
+//             .map(res => res.json())
+//             .catch(error => Observable.throw(error))
+//             .subscribe(
+//                 data => console.log('success'),
+//                 error => console.log(error)
+//             )
+//     }
+// }
+
+
+
 }

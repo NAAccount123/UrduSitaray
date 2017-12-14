@@ -1,6 +1,15 @@
 .border-c{
-    border-color: rgb(153, 153, 24);
+    border-color: #f9f1e4;
     border-width: 2px;
     border-style:solid;
-    height: 1000px!important
+    background-color: antiquewhite;
+    color:f9f1e4;
+}
+.container-fluid
+{
+    padding: 0!important
+}
+.text-header{
+    background-color:#880015;
+    color:#fff6f1;
 }

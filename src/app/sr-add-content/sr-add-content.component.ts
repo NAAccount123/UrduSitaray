@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { StoreContentService } from './services/store-content.service';
 import { BlogModel } from './model/blog-model';
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
@@ -9,10 +9,11 @@ import { Observable } from "rxjs/Observable";
 import { Subscriber } from "rxjs/Subscriber";
 import { ArticleModel } from './model/article-model';
 import { ArticleService } from './add-artcle/article.service';
+import { DomSanitizer } from "@angular/platform-browser";
 @Component({
   selector: 'app-sr-add-content',
   templateUrl: './sr-add-content.component.html',
-  styleUrls: ['./sr-add-content.component.css']
+  styleUrls: ['./sr-add-content.component.css'],
 })
 export class SrAddContentComponent implements OnInit {
   private blog_id: number;
@@ -21,7 +22,7 @@ export class SrAddContentComponent implements OnInit {
   private articles: Array<ArticleModel> = [];
   private ModelMessage: string;
   private ModelHeader: string;
-  private IsNewBlog:boolean=true;
+  private IsNewBlog: boolean = true;
   Alert_M(header: string, message: string) {
     this.ModelHeader = header;
     this.ModelMessage = message;
@@ -32,13 +33,15 @@ export class SrAddContentComponent implements OnInit {
 
 
   constructor(
+    private _DomSanitizationService: DomSanitizer,
     private Aservice: ArticleService,
     private Bservice: StoreContentService,
     private route: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private cd: ChangeDetectorRef
+) {
     this.currentBlog = new BlogModel();
-
 
 
 
@@ -46,15 +49,11 @@ export class SrAddContentComponent implements OnInit {
       params => {
         this.blog_id = params['id'];
       });
- if(this.blog_id==undefined||this.blog_id==null)
- {
-   this.IsNewBlog=true;
- }else{
-   this.IsNewBlog=false;
- }
- console.log(this.IsNewBlog);
-
-
+    if (this.blog_id == undefined || this.blog_id == null) {
+      this.IsNewBlog = true;
+    } else {
+      this.IsNewBlog = false;
+    }
     this.GetBlogs();
 
   }
@@ -75,12 +74,13 @@ export class SrAddContentComponent implements OnInit {
   GetArticles() {
     if (this.blog_id != undefined || this.blog_id != null) {
       this.articles = [];
+      console.log("emotty");
       this.Aservice.GetArticles(this.blog_id).subscribe(
         response => {
           for (let i in response) {
             this.articles.push(response[i]);
           }
-        },error=>{
+        }, error => {
           alert("Can not get Articles, See error in console");
           console.log(error);
         }
@@ -118,15 +118,30 @@ export class SrAddContentComponent implements OnInit {
     );
   }
 
+  OnDeleteArticle(Id,index) {
+    this.Aservice.DeleteArticle(Id).subscribe(
+      result => {
+        alert("Successfully Deleted Article")
+        this.articles.splice(index,1);
+        this.cd.detectChanges();
+      }, error => {
+        alert("Error while getting deleting Article, Check log to see error");
+        console.log(error);
+      }
+    );
+  }
   OnBlogDelete(Id) {
     this.Bservice.DeleteBlog(Id);
-      this.router.navigate(['../admin'],{replaceUrl:true});    
-      this.GetBlogs();
+    this.router.navigate(['../admin'], { replaceUrl: true });
+    this.GetBlogs();
   }
   alerto() {
     const modalRef = this.modalService.open(NgModelComponent);
     modalRef.componentInstance.name = 'World';
   }
-
-
+ReturnImagePath(blogId:number,fileName:string)
+{
+  var s1=new String("E:\\\\Media\\");
+  return this._DomSanitizationService.bypassSecurityTrustUrl( s1.toString()+blogId+"\\"+fileName);
+}
 }

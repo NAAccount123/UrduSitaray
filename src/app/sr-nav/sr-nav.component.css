@@ -1,0 +1,7 @@
+.navbar{
+    background-image: url('../../assets/icons/NavBackground.png') !important;
+    background-size:cover!important
+}
+.nav-link{
+color:#ff576d!important;
+}

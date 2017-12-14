@@ -20,6 +20,10 @@ const routes: Routes = [
       component: SrAddContentComponent,
   },
     {
+        path: ':id',
+        component: MainBodyComponent,
+    },
+    {
         path: '',
         component: MainBodyComponent,
     }

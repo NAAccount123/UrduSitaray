@@ -1,6 +1,10 @@
-<div class="container-fluid border-c" >
-    <button class="btn btn-success" [routerLink]="['admin']" >Add Content</button> 
-    
-    <h2 class="text-center">کس طرح ستارے ایک دوسرے سے محبت کرتے ہیں</h2>
+<div class="container-fluid border-c">
+  <div class="text-right" style="font-size:10px">
+  </div>
+  <h2 class="text-header text-center">How stars love each other?</h2>
+  <div *ngFor="let article of articles">
+    <app-sr-article [title]="article.Title" [description]="article.Description" [imageName]="article.PictureName"></app-sr-article>
+  </div>
 
+  <button class="btn btn-success" [routerLink]="['admin']">Add Content</button>
 </div>
