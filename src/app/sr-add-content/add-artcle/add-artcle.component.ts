@@ -29,7 +29,11 @@ export class AddArtcleComponent implements OnInit {
     ArticleModelObj.BlogId=this.blog_id;
     ArticleModelObj.Title = value.Title;
     ArticleModelObj.Description = value.Description;
+    ArticleModelObj.LinkedToBlog = value.LinkedToBlog;
+    ArticleModelObj.Link = value.Link;
+    ArticleModelObj.Category = value.Category;
     ArticleModelObj.Alt = value.Alt;
+    
 
     this.service.SaveArticle(ArticleModelObj,this.Picture).subscribe(
       result => {

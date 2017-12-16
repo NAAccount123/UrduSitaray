@@ -3,8 +3,9 @@
   </div>
   <h2 class="text-header text-center">How stars love each other?</h2>
   <div *ngFor="let article of articles">
-    <app-sr-article [title]="article.Title" [description]="article.Description" [imageName]="article.PictureName"></app-sr-article>
+    <app-sr-article [title]="article.Title" [description]="article.Description"
+     [BlogNumber]="article.LinkedToBlog"
+     [Link]="article.Link"
+     [imageName]="article.PictureName"></app-sr-article>
   </div>
-
-  <button class="btn btn-success" [routerLink]="['admin']">Add Content</button>
 </div>

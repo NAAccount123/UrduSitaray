@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg ">
-    <a class="navbar-brand" href="#">
-        <img src="/assets/icons/KismatFactsLogo.png" width="200" height="80" class="d-inline-block align-top" alt="">
-      
+    <a class="navbar-brand" [routerLink]="[getLink(13)]">
+        <img src="/assets/icons/KismatFactsLogo.png" width="200" height="80" class="d-inline-block align-top" alt="">      
       </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a [ngClass]="{'nav-link':true, 'active':blog_id==13}" [routerLink]="[getLink(13)]" >Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Horoscope Facts</a>
+          <a [ngClass]="{'nav-link':true, 'active':blog_id==14}"  [routerLink]="[getLink(13)]">Horoscope Facts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Love Facts</a>
+          <a [ngClass]="{'nav-link':true, 'active':blog_id==15}" [routerLink]="[getLink(13)]">Love Facts</a>
         </li>
       </ul>
     </div>

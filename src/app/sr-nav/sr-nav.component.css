@@ -5,3 +5,17 @@
 .nav-link{
 color:#ff576d!important;
 }
+.nav-link:hover
+{
+    text-decoration: underline;
+}
+.active{
+     color:#ff576d!important;
+     font-weight: 700;
+}
+.active:hover{
+     color:#ff576d!important;
+     font-weight: 700;
+     text-decoration: none;
+     cursor: default;
+}

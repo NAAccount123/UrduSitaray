@@ -26,17 +26,37 @@
               <input type="text" class="form-control" 
               id="Alt" name="Alt" aria-describedby="alt" 
               placeholder="Enter Alt"
-              ngModel >
-              
+              ngModel >              
             </div>
-          
-        
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Allow Comments
-          </label>
-        </div>
+
+
+          <div class="form-group">
+              <label for="Category">Link(if external Link)</label>
+              <input type="text" class="form-control" 
+              id="Link" name="Link" aria-describedby="alt" 
+              placeholder="Enter Link"
+              ngModel >              
+            </div>
+
+
+          <div class="form-group">
+              <label for="Category">Category(horoscope)</label>
+              <input type="text" class="form-control" 
+              id="Category" name="Category" aria-describedby="alt" 
+              placeholder="Enter Category"
+              ngModel >              
+            </div>
+
+
+          <div class="form-group">
+              <label for="LinkedToBlog">Linked Blog(if any)</label>
+              <input type="number" class="form-control" 
+              id="LinkedToBlog" name="LinkedToBlog" aria-describedby="alt" 
+              placeholder="Enter Blog Number"
+              ngModel >              
+            </div>
+
+
 
        <button type="submit" class="btn btn-primary">Save</button>
        <button type="submit" class="btn btn-primary" [routerLink]="['../']" >Cancel</button>

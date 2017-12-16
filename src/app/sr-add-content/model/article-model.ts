@@ -11,4 +11,8 @@ export class ArticleModel{
     Description:string=null;
     Alt:string=null;
     IsComments:boolean;
+    Link:string=null;
+    Category:string=null;
+    LinkedToBlog:number=-1;
+
     }
